@@ -11,8 +11,14 @@ export const AVISO =
 
 export const imagens = { heroEstrada, vistoriaImg, consultaImg };
 
-export function Logo({ className = "h-8" }: { className?: string }) {
-  return (
+export function Logo({
+  className = "h-8",
+  onDark = false,
+}: {
+  className?: string;
+  onDark?: boolean;
+}) {
+  const img = (
     <img
       src={logo.url}
       alt="Grupo WIN — Associação de Benefícios"
@@ -20,12 +26,18 @@ export function Logo({ className = "h-8" }: { className?: string }) {
       loading="lazy"
     />
   );
+  if (!onDark) return img;
+  return (
+    <span className="inline-flex items-center rounded-lg bg-white px-[0.5em] py-[0.35em] shadow-soft">
+      {img}
+    </span>
+  );
 }
 
 export function Selo({ children = "PROGRAMA ESPECIAL DE REATIVAÇÃO" }: { children?: string }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-win-orange/50 bg-win-orange/12 px-3 py-1 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-win-orange">
-      <span className="h-1.5 w-1.5 rounded-full bg-win-orange" />
+    <span className="inline-flex items-center gap-[0.5em] rounded-full border border-win-orange/50 bg-win-orange/12 px-[0.9em] py-[0.35em] text-[0.62em] font-bold uppercase tracking-[0.18em] text-win-orange">
+      <span className="h-[0.4em] w-[0.4em] rounded-full bg-win-orange" />
       {children}
     </span>
   );
@@ -48,7 +60,7 @@ export function Cta({ label = "CONSULTE SEU CPF" }: { label?: string }) {
       href={URL_FULL}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-[0.8em] font-extrabold uppercase tracking-[0.1em] text-win-graphite-deep shadow-glow transition-transform hover:scale-[1.03]"
+      className="inline-flex items-center justify-center rounded-full px-[1.3em] py-[0.65em] text-[0.8em] font-extrabold uppercase tracking-[0.08em] text-win-graphite-deep shadow-glow transition-transform hover:scale-[1.03]"
       style={{ backgroundImage: "var(--gradient-win)" }}
     >
       {label}
@@ -56,10 +68,20 @@ export function Cta({ label = "CONSULTE SEU CPF" }: { label?: string }) {
   );
 }
 
-export function Qr({ size = 76 }: { size?: number }) {
+export function Qr({ size = 76, fluid = false }: { size?: number; fluid?: boolean }) {
   return (
-    <div className="rounded-xl bg-white p-2 shadow-soft">
-      <QRCodeSVG value={URL_FULL} size={size} level="M" bgColor="#ffffff" fgColor="#2b2b2a" />
+    <div
+      className="shrink-0 rounded-[0.6em] bg-white p-[0.35em] shadow-soft"
+      style={fluid ? { width: "5.2em" } : undefined}
+    >
+      <QRCodeSVG
+        value={URL_FULL}
+        size={size}
+        level="M"
+        bgColor="#ffffff"
+        fgColor="#2b2b2a"
+        style={fluid ? { width: "100%", height: "auto" } : undefined}
+      />
     </div>
   );
 }
@@ -81,7 +103,7 @@ export function Peca({
   return (
     <figure className={`flex flex-col gap-3 ${className}`}>
       <div
-        className="relative w-full overflow-hidden rounded-2xl border border-border shadow-soft"
+        className="@container relative w-full overflow-hidden rounded-2xl border border-border shadow-soft"
         style={{ aspectRatio: ratio }}
       >
         {children}
