@@ -4,6 +4,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Grupo WIN — Campanha VOLTA PRA WIN */
+
 /*
  * Design system definition.
  *
@@ -20,6 +22,12 @@
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --color-win-orange: var(--win-orange);
+  --color-win-orange-soft: var(--win-orange-soft);
+  --color-win-graphite: var(--win-graphite);
+  --color-win-graphite-deep: var(--win-graphite-deep);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
@@ -63,25 +71,43 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.985 0.003 90);
+  --foreground: oklch(0.28 0.006 60);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.28 0.006 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.28 0.006 60);
+  --primary: oklch(0.735 0.168 56);
+  --primary-foreground: oklch(0.21 0.005 60);
+  --secondary: oklch(0.3 0.006 60);
+  --secondary-foreground: oklch(0.985 0.003 90);
+  --muted: oklch(0.955 0.005 80);
+  --muted-foreground: oklch(0.52 0.01 70);
+  --accent: oklch(0.96 0.03 70);
+  --accent-foreground: oklch(0.28 0.006 60);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.905 0.005 80);
+  --input: oklch(0.905 0.005 80);
+  --ring: oklch(0.735 0.168 56);
+
+  /* Marca */
+  --win-orange: oklch(0.735 0.168 56);
+  --win-orange-soft: oklch(0.815 0.13 62);
+  --win-graphite: oklch(0.31 0.006 60);
+  --win-graphite-deep: oklch(0.22 0.005 60);
+  --gradient-win: linear-gradient(135deg, var(--win-orange), var(--win-orange-soft));
+  --gradient-graphite: linear-gradient(150deg, var(--win-graphite-deep), var(--win-graphite));
+  --gradient-overlay: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--win-graphite-deep) 92%, transparent) 0%,
+    color-mix(in oklab, var(--win-graphite-deep) 70%, transparent) 45%,
+    transparent 85%
+  );
+  --shadow-soft: 0 18px 50px -24px color-mix(in oklab, var(--win-graphite-deep) 55%, transparent);
+  --shadow-glow: 0 20px 60px -20px color-mix(in oklab, var(--win-orange) 55%, transparent);
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +166,34 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility surface-graphite {
+  background-image: var(--gradient-graphite);
+  color: oklch(0.985 0.003 90);
+}
+
+@utility text-gradient-win {
+  background-image: var(--gradient-win);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
 }
