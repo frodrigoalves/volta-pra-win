@@ -22,6 +22,12 @@
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --color-win-orange: var(--win-orange);
+  --color-win-orange-soft: var(--win-orange-soft);
+  --color-win-graphite: var(--win-graphite);
+  --color-win-graphite-deep: var(--win-graphite-deep);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
@@ -160,5 +166,34 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility surface-graphite {
+  background-image: var(--gradient-graphite);
+  color: oklch(0.985 0.003 90);
+}
+
+@utility text-gradient-win {
+  background-image: var(--gradient-win);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
 }
