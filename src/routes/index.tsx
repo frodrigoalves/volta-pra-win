@@ -156,12 +156,17 @@ function Secao({
 function KeyArt({
   compact = false,
   vertical = false,
+  scale = 4.2,
 }: {
   compact?: boolean;
   vertical?: boolean;
+  scale?: number;
 }) {
   return (
-    <div className="surface-graphite absolute inset-0">
+    <div
+      className="surface-graphite absolute inset-0"
+      style={{ fontSize: `clamp(7px, ${scale}cqi, 20px)` }}
+    >
       <Fundo
         position={vertical ? "72% 60%" : "70% center"}
         overlay={
@@ -171,43 +176,39 @@ function KeyArt({
         }
       />
       <div
-        className={`relative flex h-full flex-col justify-between p-[6%] ${
+        className={`relative flex h-full flex-col justify-between gap-[0.8em] p-[6%] ${
           vertical ? "" : "max-w-[68%]"
         }`}
       >
-        <div className="flex flex-col items-start gap-3">
-          <Logo className={compact ? "h-5" : "h-8"} />
+        <div className="flex flex-col items-start gap-[0.6em]">
+          <Logo className="h-[1.5em]" onDark />
           <Selo />
         </div>
         <div className="text-secondary-foreground">
-          <h3
-            className={`font-extrabold uppercase leading-[0.95] ${
-              compact ? "text-[1.35rem]" : "text-[2.1rem]"
-            }`}
-          >
+          <h3 className="text-[2em] font-extrabold uppercase leading-[0.95]">
             Seu caminho de volta{" "}
             <span className="text-gradient-win">começa aqui</span>
           </h3>
           {!compact && (
-            <p className="mt-3 max-w-md text-sm text-secondary-foreground/80">
+            <p className="mt-[0.7em] text-[0.85em] leading-snug text-secondary-foreground/80">
               Faça uma nova vistoria gratuita e consulte a possibilidade de abono dos boletos
               atrasados elegíveis.
             </p>
           )}
-          <ul className="mt-4 grid gap-1.5 text-secondary-foreground/90 sm:grid-cols-2">
+          <ul className="mt-[0.9em] grid grid-cols-2 gap-[0.4em] text-[0.8em] text-secondary-foreground/90">
             {destaques.slice(0, compact ? 2 : 4).map((d) => (
               <Check key={d}>{d}</Check>
             ))}
           </ul>
         </div>
-        <div className="flex items-end justify-between gap-4">
-          <div className="flex flex-col gap-2">
+        <div className="flex items-end justify-between gap-[1em]">
+          <div className="flex flex-col items-start gap-[0.5em]">
             <Cta />
-            <span className="text-[0.7rem] font-semibold tracking-wide text-secondary-foreground/70">
+            <span className="text-[0.62em] font-semibold tracking-wide text-secondary-foreground/70">
               {URL_CAMPANHA}
             </span>
           </div>
-          <Qr size={compact ? 48 : 64} />
+          <Qr size={128} fluid />
         </div>
       </div>
     </div>
@@ -232,30 +233,34 @@ function CardMensagem({
   position?: string;
 }) {
   return (
-    <div className="surface-graphite absolute inset-0">
+    <div
+      className="surface-graphite absolute inset-0"
+      style={{ fontSize: "clamp(7px, 4.2cqi, 20px)" }}
+    >
       <Fundo
         img={img}
         position={position ?? "center"}
         overlay="linear-gradient(200deg, color-mix(in oklab, var(--win-graphite-deep) 55%, transparent) 0%, color-mix(in oklab, var(--win-graphite-deep) 93%, transparent) 62%)"
       />
-      <div className="relative flex h-full flex-col justify-end gap-3 p-[7%]">
-        <Logo className="absolute left-[7%] top-[7%] h-5" />
-        <h3 className="text-[1.35rem] font-extrabold uppercase leading-[1] text-secondary-foreground">
+      <div className="relative flex h-full flex-col justify-end gap-[0.6em] p-[7%]">
+        <Logo className="h-[1.4em]" onDark />
+        <div className="flex-1" />
+        <h3 className="text-[1.5em] font-extrabold uppercase leading-[1] text-secondary-foreground">
           {headline}
         </h3>
-        <p className="text-sm leading-snug text-secondary-foreground/80">{sub}</p>
+        <p className="text-[0.82em] leading-snug text-secondary-foreground/80">{sub}</p>
         {destaque && (
-          <p className="text-xs font-semibold text-win-orange">{destaque}</p>
+          <p className="text-[0.72em] font-semibold text-win-orange">{destaque}</p>
         )}
-        <div className="mt-1 flex items-center justify-between gap-3">
-          <div className="flex flex-col gap-1.5">
+        <div className="mt-[0.2em] flex items-end justify-between gap-[0.8em]">
+          <div className="flex flex-col items-start gap-[0.4em]">
             <Cta label={cta} />
-            <span className="text-[0.68rem] text-secondary-foreground/70">{URL_CAMPANHA}</span>
+            <span className="text-[0.6em] text-secondary-foreground/70">{URL_CAMPANHA}</span>
           </div>
-          <Qr size={48} />
+          <Qr size={128} fluid />
         </div>
         {aviso && (
-          <p className="text-[0.6rem] leading-tight text-secondary-foreground/55">{aviso}</p>
+          <p className="text-[0.55em] leading-tight text-secondary-foreground/55">{aviso}</p>
         )}
       </div>
     </div>
