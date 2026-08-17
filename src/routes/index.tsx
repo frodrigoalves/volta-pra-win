@@ -390,13 +390,13 @@ function Index() {
       >
         <div className="grid gap-8 md:grid-cols-2">
           <Peca titulo="Instagram Feed vertical" medida="1080 × 1350" ratio="1080/1350">
-            <KeyArt vertical />
+            <KeyArt vertical scale={4.2} />
           </Peca>
           <Peca titulo="Instagram / Facebook quadrado" medida="1080 × 1080" ratio="1/1">
-            <KeyArt vertical />
+            <KeyArt vertical scale={3.6} />
           </Peca>
           <Peca titulo="Stories / Status WhatsApp" medida="1080 × 1920" ratio="1080/1920">
-            <KeyArt vertical />
+            <KeyArt vertical scale={4.4} />
           </Peca>
           <Peca titulo="Card para envio no WhatsApp" medida="1080 × 1080" ratio="1/1">
             <CardMensagem
@@ -412,34 +412,35 @@ function Index() {
             ratio="1920/640"
             className="md:col-span-2"
           >
-            <KeyArt compact />
+            <KeyArt compact scale={1.9} />
           </Peca>
           <Peca titulo="Banner mobile" medida="1080 × 1350" ratio="1080/1350">
-            <KeyArt vertical />
+            <KeyArt vertical scale={4.2} />
           </Peca>
           <Peca titulo="Capa para Facebook" medida="1640 × 624" ratio="1640/624">
-            <KeyArt compact />
+            <KeyArt compact scale={2.2} />
           </Peca>
           <Peca titulo="Flyer A4 digital e impressão" medida="210 × 297 mm" ratio="210/297">
-            <KeyArt vertical />
+            <KeyArt vertical scale={4} />
           </Peca>
           <Peca titulo="Faixa de assinatura de e-mail" medida="1200 × 300" ratio="1200/300">
-            <div className="surface-graphite absolute inset-0 flex items-center justify-between gap-4 px-6">
-              <div className="flex items-center gap-4">
-                <span className="rounded-lg bg-white px-3 py-2">
-                  <Logo className="h-5" />
-                </span>
+            <div
+              className="surface-graphite absolute inset-0 flex items-center justify-between gap-[1em] px-[2em]"
+              style={{ fontSize: "clamp(7px, 2.4cqi, 18px)" }}
+            >
+              <div className="flex items-center gap-[1em]">
+                <Logo className="h-[1.6em]" onDark />
                 <div>
-                  <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-win-orange">
+                  <p className="text-[0.6em] font-bold uppercase tracking-[0.2em] text-win-orange">
                     Programa de Reativação
                   </p>
-                  <p className="text-base font-extrabold uppercase leading-tight text-secondary-foreground">
+                  <p className="text-[1.15em] font-extrabold uppercase leading-tight text-secondary-foreground">
                     Seu caminho de volta começa aqui
                   </p>
-                  <p className="text-[0.7rem] text-secondary-foreground/70">{URL_CAMPANHA}</p>
+                  <p className="text-[0.65em] text-secondary-foreground/70">{URL_CAMPANHA}</p>
                 </div>
               </div>
-              <Qr size={54} />
+              <Qr size={128} fluid />
             </div>
           </Peca>
         </div>
@@ -502,26 +503,35 @@ function Index() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {stories.map((s) => (
             <Peca key={s.n} titulo={`Story ${s.n}`} medida="1080 × 1920" ratio="1080/1920">
-              <div className="surface-graphite absolute inset-0">
+              <div
+                className="surface-graphite absolute inset-0"
+                style={{ fontSize: "clamp(7px, 4.6cqi, 20px)" }}
+              >
                 <Fundo
                   img={s.img}
                   position="70% 55%"
                   overlay="linear-gradient(180deg, color-mix(in oklab, var(--win-graphite-deep) 88%, transparent) 0%, color-mix(in oklab, var(--win-graphite-deep) 55%, transparent) 45%, color-mix(in oklab, var(--win-graphite-deep) 94%, transparent) 100%)"
                 />
                 <div className="relative flex h-full flex-col justify-between p-[9%] pb-[16%] pt-[16%]">
-                  <div className="flex flex-col items-start gap-3">
-                    <Logo className="h-5" />
-                    <span className="font-mono text-xs font-bold text-win-orange">{s.n}/04</span>
+                  <div className="flex flex-col items-start gap-[0.6em]">
+                    <Logo className="h-[1.4em]" onDark />
+                    <span className="font-mono text-[0.7em] font-bold text-win-orange">
+                      {s.n}/04
+                    </span>
                   </div>
                   <div className="text-secondary-foreground">
-                    <h3 className="text-xl font-extrabold uppercase leading-tight">{s.titulo}</h3>
-                    <p className="mt-3 text-sm text-secondary-foreground/80">{s.texto}</p>
+                    <h3 className="text-[1.5em] font-extrabold uppercase leading-tight">
+                      {s.titulo}
+                    </h3>
+                    <p className="mt-[0.6em] text-[0.85em] leading-snug text-secondary-foreground/80">
+                      {s.texto}
+                    </p>
                   </div>
-                  <div className="flex items-end justify-between gap-3">
-                    <span className="text-[0.7rem] font-semibold text-secondary-foreground/70">
+                  <div className="flex items-end justify-between gap-[0.8em]">
+                    <span className="text-[0.62em] font-semibold text-secondary-foreground/70">
                       {URL_CAMPANHA}
                     </span>
-                    {s.qr && <Qr size={56} />}
+                    {s.qr && <Qr size={128} fluid />}
                   </div>
                 </div>
               </div>
