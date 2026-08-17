@@ -176,8 +176,8 @@ function KeyArt({
         }
       />
       <div
-        className={`relative flex h-full flex-col justify-between gap-[0.8em] p-[6%] ${
-          vertical ? "" : "max-w-[68%]"
+        className={`relative flex h-full flex-col justify-between p-[5%] ${
+          compact ? "max-w-[60%] gap-[0.4em]" : "gap-[0.8em]"
         }`}
       >
         <div className="flex flex-col items-start gap-[0.6em]">
@@ -202,15 +202,20 @@ function KeyArt({
           </ul>
         </div>
         <div className="flex items-end justify-between gap-[1em]">
-          <div className="flex flex-col items-start gap-[0.5em]">
+          <div className="flex flex-col items-start gap-[0.4em]">
             <Cta />
             <span className="text-[0.62em] font-semibold tracking-wide text-secondary-foreground/70">
               {URL_CAMPANHA}
             </span>
           </div>
-          <Qr size={128} fluid />
+          {!compact && <Qr size={128} fluid />}
         </div>
       </div>
+      {compact && (
+        <div className="absolute bottom-[8%] right-[4%]">
+          <Qr size={128} fluid />
+        </div>
+      )}
     </div>
   );
 }
