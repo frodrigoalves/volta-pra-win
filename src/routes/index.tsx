@@ -417,13 +417,13 @@ function Index() {
             ratio="1920/640"
             className="md:col-span-2"
           >
-            <KeyArt compact scale={1.9} />
+            <KeyArt compact scale={1.55} />
           </Peca>
           <Peca titulo="Banner mobile" medida="1080 × 1350" ratio="1080/1350">
             <KeyArt vertical scale={4.2} />
           </Peca>
           <Peca titulo="Capa para Facebook" medida="1640 × 624" ratio="1640/624">
-            <KeyArt compact scale={2.2} />
+            <KeyArt compact scale={1.8} />
           </Peca>
           <Peca titulo="Flyer A4 digital e impressão" medida="210 × 297 mm" ratio="210/297">
             <KeyArt vertical scale={4} />
